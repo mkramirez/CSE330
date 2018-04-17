@@ -1,7 +1,7 @@
 #include "Random.h"
 
 void Random::random_seed() {
-    int seed = static_cast<int>(time(nullptr));
+    int seed = static_cast<int>(time(0));
     srand(seed);
 }
 
@@ -11,13 +11,14 @@ void Random::random_vector(int k, int from, int upto, std::vector<int> &v) {
     for (int i = 1; i <= k; i++) {
         rnum = rand_int(from, upto);
         r33 = rand_int(1, 4);
+        if (r33 == 3) {
+            v.push_back(-rnum);
+        }
+        else {
+            v.push_back(rnum);
+        }
     }
-    if (r33 == 3) {
-        v.push_back(-rnum);
-    }
-    else {
-        v.push_back(rnum);
-    }
+
 }
 
 int Random::rand_int(int a, int b) {
